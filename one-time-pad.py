@@ -1,14 +1,14 @@
 #!/usr/bin/env python
 import random
 import binascii
-from Typing import Iterable
+from typing import Sized
 
 # seed the random number generator so we get the same result each time
 ### maybe get them to generate the seed from a password
 ### if they get through everything really fast
 random.seed(42)
 
-def generate_pad(message: Iterable) -> bytes:
+def generate_pad(message: Sized) -> bytes:
     """
     Generates the One Time Pad (OTP) to be used for encrypting the message.
 
@@ -96,10 +96,10 @@ encrypted = encrypt(message, pad)
 decrypted = decrypt(encrypted, pad)
 
 # print everything out
-print(f"Original message:  {message.decode()}")
-print(f"One Time Pad:      {pad.decode()}")
-print(f"Encrypted message: {encrypted.decode()}")
-print(f"Decrypted message: {decrypted.decode()}")
+print(f"Original message:  \"{message.decode()}\"")
+print(f"One Time Pad:      \"{pad.decode()}\"")
+print(f"Encrypted message: \"{encrypted.decode()}\"")
+print(f"Decrypted message: \"{decrypted.decode()}\"")
 
 # assert it was a successful decryption
 assert message == decrypted
